@@ -17,56 +17,47 @@ public class DetectiveNotesDialog extends JDialog {
 
 	private JComboBox<String> playerCombobox, weaponCombobox, roomCombobox;
 	
-	public DetectiveNotesDialog() {
+	public DetectiveNotesDialog(ArrayList<Card> deck) {
 		setTitle("Detective Notes");
 		setSize(500, 500);
 		
 		setLayout(new GridLayout(3,2));
-		CheckboxPanel players = new CheckboxPanel("Players");
-		add(players);
-		players.addCheckbox("Frodo", "player");
-		players.addCheckbox("Sam", "player");
-		players.addCheckbox("Legolas", "player");
-		players.addCheckbox("Aragorn", "player");
-		players.addCheckbox("Gandalf", "player");
-		players.addCheckbox("Gollum", "player");
 		
+		CheckboxPanel players = new CheckboxPanel("Players");		
+		CheckboxPanel weapons = new CheckboxPanel("Weapons");		
+		CheckboxPanel rooms = new CheckboxPanel("Rooms");
+		
+		//create checkboxes based on cards in deck
+		for (Card x : deck) { 
+			if (x.getCardType().equals(Card.CardType.PLAYER)) {
+				players.addCheckbox(x.getName(), "player");
+			}
+			if (x.getCardType().equals(Card.CardType.WEAPON)) {
+				weapons.addCheckbox(x.getName(), "weapon");
+			}
+			if (x.getCardType().equals(Card.CardType.ROOM)) {
+				rooms.addCheckbox(x.getName(), "room");
+			}
+		}
+		
+		//populate combo boxes based on checkboxes
 		playerCombobox = new JComboBox<String>();
 		playerCombobox.setBorder(new TitledBorder(new EtchedBorder(), "Player Guess"));
 		for (JCheckBox j : players.getCheckboxes()) playerCombobox.addItem(j.getText());
-		
-		add(playerCombobox);
-		
-		CheckboxPanel weapons = new CheckboxPanel("Weapons");
-		add(weapons);
-		weapons.addCheckbox("Dagger","weapon");
-		weapons.addCheckbox("Battleaxe","weapon");
-		weapons.addCheckbox("Longsword","weapon");
-		weapons.addCheckbox("Wizard Staff", "weapon");
-		weapons.addCheckbox("Bow", "weapon");
-		weapons.addCheckbox("The Ring", "weapon");
 		
 		weaponCombobox = new JComboBox<String>();
 		weaponCombobox.setBorder(new TitledBorder(new EtchedBorder(), "Weapon Guess"));
 		for (JCheckBox j : weapons.getCheckboxes()) weaponCombobox.addItem(j.getText());
 		
-		add(weaponCombobox);
-		
-		CheckboxPanel rooms = new CheckboxPanel("Rooms");
-		add(rooms);
-		rooms.addCheckbox("Rhun", "room");
-		rooms.addCheckbox("Rohan", "room");
-		rooms.addCheckbox("The Shire", "room");
-		rooms.addCheckbox("Gondor", "room");
-		rooms.addCheckbox("Dunland", "room");
-		rooms.addCheckbox("Mirkwood", "room");
-		rooms.addCheckbox("Rivendell","room");
-		rooms.addCheckbox("Ash Mountains","room");
-		
 		roomCombobox = new JComboBox<String>();
 		roomCombobox.setBorder(new TitledBorder(new EtchedBorder(), "Room Guess"));
 		for (JCheckBox j : rooms.getCheckboxes()) roomCombobox.addItem(j.getText());
 		
+		add(players);
+		add(playerCombobox);
+		add(weapons);
+		add(weaponCombobox);
+		add(rooms);
 		add(roomCombobox);
 		
 	}

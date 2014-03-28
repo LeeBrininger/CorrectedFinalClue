@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import clue.*;
-import clue.Card.cardType;
+import clue.Card.CardType;
 
 public class GameActionTests {
 	
@@ -17,7 +17,7 @@ static ClueGame game;
 	// Makes a new game and loads configuration files
 	@Before
 	public void setup(){ 
-		game = new ClueGame("componentConfig.csv");
+		game = new ClueGame("componentConfig.csv", "gameLayout", "legend");
 	}
 	
 	@Test
@@ -47,16 +47,16 @@ static ClueGame game;
 		int index = rand.nextInt(6);
 		int accusingIndex = rand.nextInt(6);
 		while (index == accusingIndex) accusingIndex = rand.nextInt(6);
-		game.getPlayers().get(index).giveCard(new Card (cardType.PLAYER, "Gandalf"));
-		game.getPlayers().get(index).giveCard(new Card(cardType.WEAPON, "Longsword"));
-		game.getPlayers().get(index).giveCard(new Card(cardType.ROOM, "The Shire"));
+		game.getPlayers().get(index).giveCard(new Card (CardType.PLAYER, "Gandalf"));
+		game.getPlayers().get(index).giveCard(new Card(CardType.WEAPON, "Longsword"));
+		game.getPlayers().get(index).giveCard(new Card(CardType.ROOM, "The Shire"));
 		
 		// Tests that a player suggestion can be disproved when only one can be shown
-		assertEquals(new Card(cardType.PLAYER, "Gandalf"), game.handleSuggestion("Gandalf", "Bow", "Dunland", game.getPlayers().get(accusingIndex)));
+		assertEquals(new Card(CardType.PLAYER, "Gandalf"), game.handleSuggestion("Gandalf", "Bow", "Dunland", game.getPlayers().get(accusingIndex)));
 		// Tests that a weapon suggestion can be disproved when only one can be shown
-		assertEquals(new Card(cardType.WEAPON, "Longsword"), game.handleSuggestion("Gollum", "Longsword", "Rivendell", game.getPlayers().get(accusingIndex)));
+		assertEquals(new Card(CardType.WEAPON, "Longsword"), game.handleSuggestion("Gollum", "Longsword", "Rivendell", game.getPlayers().get(accusingIndex)));
 		// Tests that a room suggestion can be disproved when only one can be shown
-		assertEquals(new Card(cardType.ROOM, "The Shire"), game.handleSuggestion("Frodo", "Wizard Staff", "The Shire", game.getPlayers().get(accusingIndex)));
+		assertEquals(new Card(CardType.ROOM, "The Shire"), game.handleSuggestion("Frodo", "Wizard Staff", "The Shire", game.getPlayers().get(accusingIndex)));
 	}
 	
 	
@@ -67,9 +67,9 @@ static ClueGame game;
 		int index = rand.nextInt(6);
 		int accusingIndex = rand.nextInt(6);
 		while (index == accusingIndex) accusingIndex = rand.nextInt(6);
-		game.getPlayers().get(index).giveCard(new Card (cardType.PLAYER, "Gandalf"));
-		game.getPlayers().get(index).giveCard(new Card(cardType.WEAPON, "Longsword"));
-		game.getPlayers().get(index).giveCard(new Card(cardType.ROOM, "The Shire"));
+		game.getPlayers().get(index).giveCard(new Card (CardType.PLAYER, "Gandalf"));
+		game.getPlayers().get(index).giveCard(new Card(CardType.WEAPON, "Longsword"));
+		game.getPlayers().get(index).giveCard(new Card(CardType.ROOM, "The Shire"));
 		
 		int pw_Gandalf = 0;
 		int pw_Longsword = 0;
@@ -84,23 +84,23 @@ static ClueGame game;
 			Card testPlayerRoom = game.handleSuggestion("Gandalf", "The Ring", "The Shire", game.getPlayers().get(accusingIndex));
 			Card testWeaponRoom = game.handleSuggestion("Sam", "Longsword", "The Shire", game.getPlayers().get(accusingIndex));
 
-			if (testPlayerWeapon.equals(new Card(cardType.PLAYER, "Gandalf"))) pw_Gandalf++;
-			else if (testPlayerWeapon.equals(new Card(cardType.WEAPON, "Longsword"))) pw_Longsword++;
+			if (testPlayerWeapon.equals(new Card(CardType.PLAYER, "Gandalf"))) pw_Gandalf++;
+			else if (testPlayerWeapon.equals(new Card(CardType.WEAPON, "Longsword"))) pw_Longsword++;
 			else {
 				System.out.println(testPlayerWeapon);
 				fail("Invalid card returned.");
 			
 			}
 			
-			if (testPlayerRoom.equals(new Card(cardType.PLAYER, "Gandalf"))) pr_Gandalf++;
-			else if (testPlayerRoom.equals(new Card(cardType.ROOM, "The Shire"))) pr_Shire++;
+			if (testPlayerRoom.equals(new Card(CardType.PLAYER, "Gandalf"))) pr_Gandalf++;
+			else if (testPlayerRoom.equals(new Card(CardType.ROOM, "The Shire"))) pr_Shire++;
 			else {
 				System.out.println(testPlayerRoom);
 				fail("Invalid card returned.");
 			}
 			
-			if (testWeaponRoom.equals(new Card(cardType.WEAPON, "Longsword"))) wr_Longsword++;
-			else if (testWeaponRoom.equals(new Card(cardType.ROOM, "The Shire"))) wr_Shire++;
+			if (testWeaponRoom.equals(new Card(CardType.WEAPON, "Longsword"))) wr_Longsword++;
+			else if (testWeaponRoom.equals(new Card(CardType.ROOM, "The Shire"))) wr_Shire++;
 			else {
 				System.out.println(testWeaponRoom);
 				fail("Invalid card returned.");
@@ -129,9 +129,9 @@ static ClueGame game;
 		Random rand = new Random();
 		int index = rand.nextInt(6);
 		
-		game.getPlayers().get(index).giveCard(new Card(cardType.PLAYER, "Aragorn"));
-		game.getPlayers().get(index).giveCard(new Card(cardType.WEAPON, "Battleaxe"));
-		game.getPlayers().get(index).giveCard(new Card (cardType.ROOM, "Mirkwood"));
+		game.getPlayers().get(index).giveCard(new Card(CardType.PLAYER, "Aragorn"));
+		game.getPlayers().get(index).giveCard(new Card(CardType.WEAPON, "Battleaxe"));
+		game.getPlayers().get(index).giveCard(new Card (CardType.ROOM, "Mirkwood"));
 		
 		assertEquals(null, game.handleSuggestion("Aragorn", "Battleaxe", "Mirkwood", game.getPlayers().get(index)));
 	}
@@ -142,16 +142,16 @@ static ClueGame game;
 		Random rand = new Random();
 		int index = rand.nextInt(6);
 		while (index == game.getHumanPlayerIndex()) index = rand.nextInt(6);
-		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card (cardType.PLAYER, "Gandalf"));
-		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(cardType.WEAPON, "Longsword"));
-		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(cardType.ROOM, "The Shire"));
+		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card (CardType.PLAYER, "Gandalf"));
+		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(CardType.WEAPON, "Longsword"));
+		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(CardType.ROOM, "The Shire"));
 		
 		// Tests that a player suggestion can be disproved when only one can be shown
-		assertEquals(new Card(cardType.PLAYER, "Gandalf"), game.handleSuggestion("Gandalf", "Bow", "Dunland", game.getPlayers().get(index)));
+		assertEquals(new Card(CardType.PLAYER, "Gandalf"), game.handleSuggestion("Gandalf", "Bow", "Dunland", game.getPlayers().get(index)));
 		// Tests that a weapon suggestion can be disproved when only one can be shown
-		assertEquals(new Card(cardType.WEAPON, "Longsword"), game.handleSuggestion("Gollum", "Longsword", "Rivendell", game.getPlayers().get(index)));
+		assertEquals(new Card(CardType.WEAPON, "Longsword"), game.handleSuggestion("Gollum", "Longsword", "Rivendell", game.getPlayers().get(index)));
 		// Tests that a room suggestion can be disproved when only one can be shown
-		assertEquals(new Card(cardType.ROOM, "The Shire"), game.handleSuggestion("Frodo", "Wizard Staff", "The Shire", game.getPlayers().get(index)));
+		assertEquals(new Card(CardType.ROOM, "The Shire"), game.handleSuggestion("Frodo", "Wizard Staff", "The Shire", game.getPlayers().get(index)));
 	
 	}
 	
@@ -162,15 +162,15 @@ static ClueGame game;
 		Random rand = new Random();
 		int index = rand.nextInt(6);
 		while (index == game.getHumanPlayerIndex()) index = rand.nextInt(6);
-		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(cardType.PLAYER, "Legolas"));
-		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(cardType.ROOM, "Rhun"));
+		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(CardType.PLAYER, "Legolas"));
+		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(CardType.ROOM, "Rhun"));
 		int legolas = 0;
 		int rhun = 0;
 		// Run the test 100 times
 		for (int i = 0; i < 100; i++) {
 			Card test = game.handleSuggestion("Legolas", "Dagger", "Rhun", game.getPlayers().get(index));
-			if (test.equals(new Card(cardType.PLAYER, "Legolas"))) legolas++;
-			else if (test.equals(new Card(cardType.ROOM, "Rhun"))) rhun++;
+			if (test.equals(new Card(CardType.PLAYER, "Legolas"))) legolas++;
+			else if (test.equals(new Card(CardType.ROOM, "Rhun"))) rhun++;
 			else fail("Invalid card returned.");
 		}
 		// Ensure we have 100 total selections (fail should also ensure)
@@ -185,20 +185,20 @@ static ClueGame game;
 	public void testDisproveQueryInOrder() {
 		int index = 0;
 		if (index == game.getHumanPlayerIndex()) index++;
-		game.getPlayers().get(2).giveCard(new Card(cardType.PLAYER, "Sam"));
-		game.getPlayers().get(5).giveCard(new Card(cardType.ROOM, "Ash Mountains"));
-		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(cardType.PLAYER, "Aragorn"));
+		game.getPlayers().get(2).giveCard(new Card(CardType.PLAYER, "Sam"));
+		game.getPlayers().get(5).giveCard(new Card(CardType.ROOM, "Ash Mountains"));
+		game.getPlayers().get(game.getHumanPlayerIndex()).giveCard(new Card(CardType.PLAYER, "Aragorn"));
 		
 		// Tests to make sure null is returned when a suggestion is made that no player can disprove
 		assertEquals(null, game.handleSuggestion("Legolas", "Longsword", "Mirkwood", game.getPlayers().get(3)));
 		// Tests if two players can disprove the suggestion, the player who is first in the list shows its card
-		assertEquals(new Card(cardType.PLAYER, "Sam"), game.handleSuggestion("Sam", "Dagger", "Ash Mountains", game.getPlayers().get(4)));
+		assertEquals(new Card(CardType.PLAYER, "Sam"), game.handleSuggestion("Sam", "Dagger", "Ash Mountains", game.getPlayers().get(4)));
 		// Tests if the human player will show its card if it is the only one that can disprove the suggestion
-		assertEquals(new Card(cardType.PLAYER, "Aragorn"), game.handleSuggestion("Aragorn", "The Ring", "Rivendell", game.getPlayers().get(index)));
+		assertEquals(new Card(CardType.PLAYER, "Aragorn"), game.handleSuggestion("Aragorn", "The Ring", "Rivendell", game.getPlayers().get(index)));
 		// Tests if only the accusing player can disprove his suggestion, null is returned
 		assertEquals(null, game.handleSuggestion("Gollum", "Bow", "Ash Mountains", game.getPlayers().get(5)));
 		// Tests if the last player in the list can disprove a suggestion when the accusing player is the first or second player in the list
-		assertEquals(new Card(cardType.ROOM, "Ash Mountains"), game.handleSuggestion("Gandalf", "Wizard Staff", "Ash Mountains", game.getPlayers().get(index)));
+		assertEquals(new Card(CardType.ROOM, "Ash Mountains"), game.handleSuggestion("Gandalf", "Wizard Staff", "Ash Mountains", game.getPlayers().get(index)));
 	}
 	
 	// Tests to make sure that if a room is in the set of targets, it is always chosen
@@ -264,16 +264,16 @@ static ClueGame game;
 	public void testComputerSuggestionOnePossible() {
 		ComputerPlayer player = new ComputerPlayer("Frodo", "PURPLE", 92);
 		// Update the player's seen cards with every single one except for the two that he will use
-		player.updateSeen(new Card(cardType.PLAYER, "Frodo"), game.getCards());
-		player.updateSeen(new Card(cardType.PLAYER, "Sam"), game.getCards());
-		player.updateSeen(new Card(cardType.PLAYER, "Gollum"),game.getCards());
-		player.updateSeen(new Card(cardType.PLAYER, "Gandalf"), game.getCards());
-		player.updateSeen(new Card(cardType.PLAYER, "Legolas"), game.getCards());
-		player.updateSeen(new Card(cardType.WEAPON, "Wizard Staff"), game.getCards());
-		player.updateSeen(new Card(cardType.WEAPON, "The Ring"), game.getCards());
-		player.updateSeen(new Card(cardType.WEAPON, "Longsword"), game.getCards());
-		player.updateSeen(new Card(cardType.WEAPON, "Dagger"), game.getCards());
-		player.updateSeen(new Card(cardType.WEAPON, "Battleaxe"), game.getCards());
+		player.updateSeen(new Card(CardType.PLAYER, "Frodo"), game.getCards());
+		player.updateSeen(new Card(CardType.PLAYER, "Sam"), game.getCards());
+		player.updateSeen(new Card(CardType.PLAYER, "Gollum"),game.getCards());
+		player.updateSeen(new Card(CardType.PLAYER, "Gandalf"), game.getCards());
+		player.updateSeen(new Card(CardType.PLAYER, "Legolas"), game.getCards());
+		player.updateSeen(new Card(CardType.WEAPON, "Wizard Staff"), game.getCards());
+		player.updateSeen(new Card(CardType.WEAPON, "The Ring"), game.getCards());
+		player.updateSeen(new Card(CardType.WEAPON, "Longsword"), game.getCards());
+		player.updateSeen(new Card(CardType.WEAPON, "Dagger"), game.getCards());
+		player.updateSeen(new Card(CardType.WEAPON, "Battleaxe"), game.getCards());
 		
 		// Sets the player's current location to Mirkwood
 		player.setCurrentLocation(game.getBoard().getCellAt(game.getBoard().calcIndex(4,19)));
@@ -286,14 +286,14 @@ static ClueGame game;
 		public void testComputerSuggestionMultiplePossible() {
 			ComputerPlayer player = new ComputerPlayer("Frodo", "PURPLE", 92);
 			// Update the player's seen cards with every single one except for the two that he will use
-			player.updateSeen(new Card(cardType.PLAYER, "Frodo"), game.getCards());
-			player.updateSeen(new Card(cardType.PLAYER, "Sam"), game.getCards());
-			player.updateSeen(new Card(cardType.PLAYER, "Gollum"), game.getCards());
-			player.updateSeen(new Card(cardType.PLAYER, "Gandalf"), game.getCards());
-			player.updateSeen(new Card(cardType.WEAPON, "Wizard Staff"), game.getCards());
-			player.updateSeen(new Card(cardType.WEAPON, "The Ring"), game.getCards());
-			player.updateSeen(new Card(cardType.WEAPON, "Dagger"), game.getCards());
-			player.updateSeen(new Card(cardType.WEAPON, "Battleaxe"), game.getCards());
+			player.updateSeen(new Card(CardType.PLAYER, "Frodo"), game.getCards());
+			player.updateSeen(new Card(CardType.PLAYER, "Sam"), game.getCards());
+			player.updateSeen(new Card(CardType.PLAYER, "Gollum"), game.getCards());
+			player.updateSeen(new Card(CardType.PLAYER, "Gandalf"), game.getCards());
+			player.updateSeen(new Card(CardType.WEAPON, "Wizard Staff"), game.getCards());
+			player.updateSeen(new Card(CardType.WEAPON, "The Ring"), game.getCards());
+			player.updateSeen(new Card(CardType.WEAPON, "Dagger"), game.getCards());
+			player.updateSeen(new Card(CardType.WEAPON, "Battleaxe"), game.getCards());
 			
 			// Sets the player's current location to Mirkwood
 			player.setCurrentLocation(game.getBoard().getCellAt(game.getBoard().calcIndex(4, 19)));

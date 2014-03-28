@@ -4,18 +4,18 @@ PLAYER,Miss Scarlet,RED,0,16
 PLAYER,Ms. White,WHITE,24,13
 PLAYER,Colonel Mustard,YELLOW,7,23
 PLAYER,Miss Peacock,BLUE,18,0
-WEAPON,Lead pipe
-WEAPON,Rope
-WEAPON,Candlestick
-WEAPON,Wrench
-WEAPON,Revolver
-WEAPON,Knife
-ROOM,Ballroom
-ROOM,Billiard Room
-ROOM,Kitchen
-ROOM,Dining Room
-ROOM,Conservatory
-ROOM,Library
-ROOM,Study
-ROOM,Lounge
-ROOM,Hall
+WEAPON,Lead pipe,,,
+WEAPON,Rope,,,
+WEAPON,Candlestick,,,
+WEAPON,Wrench,,,
+WEAPON,Revolver,,,
+WEAPON,Knife,,,
+ROOM,Ballroom,,,
+ROOM,Billiard Room,,,
+ROOM,Kitchen,,,
+ROOM,Dining Room,,,
+ROOM,Conservatory,,,
+ROOM,Library,,,
+ROOM,Study,,,
+ROOM,Lounge,,,
+ROOM,Hall,,,

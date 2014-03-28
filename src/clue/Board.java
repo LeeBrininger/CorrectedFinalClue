@@ -157,10 +157,11 @@ public class Board extends JPanel {
 
 			String name = cellWithName.substring(posSpace);
 			name = name.trim();
-
+			
 			rooms.put(cellCodeB, name);
 		}
 
+		RoomCell.setRoomNameMap(rooms); //allow RoomCell to use this map to decode room initials
 		scan.close();
 
 	}

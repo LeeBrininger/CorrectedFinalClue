@@ -26,7 +26,7 @@ public abstract class BoardCell {
 	}
 	
 	public static boolean isWalkway(String walkway){
-		if (walkway.equals("X")){
+		if (walkway.equals("X") || walkway.equals("W")){
 			return true;
 		}
 		else {
@@ -34,21 +34,15 @@ public abstract class BoardCell {
 		}
 	}
 	public static boolean isRoom(String room){
-		if (!(room.equals("X"))&&room.length()<2){//to do: change doorway names to D
+		if (!(room.equals("X") || room.equals("W"))&&room.length()<2){//to do: change doorway names to D
 			return true;
 		}
 		else {
 			return false;
 		}
 	}
-	public static boolean isDoorway(String doorway){
-		
-		if (doorway.length() == 2 && doorway.charAt(1) != 'N'){
-			return true;
-		}
-		else{
-			return false;
-		}
+	public boolean isDoorway(){ //overridden in RoomCell
+		return false;
 	}
 	public int getRow (){
 		return row;

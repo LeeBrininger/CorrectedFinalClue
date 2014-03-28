@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -15,7 +17,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import clue.Card.cardType;
+import clue.Card.CardType;
 
 
 @SuppressWarnings("serial")
@@ -28,12 +30,18 @@ public class ClueGame extends JFrame {
 	private File componentConfig;
 	private DetectiveNotesDialog detectiveNotes;
 	private ControlFrame controls;
+	private static final String defaultLayoutFile = "ClueLayout";
+	private static final String defaultLegendFile = "ClueLegend";
 	
 	public ClueGame(String componentFile) {
+		this(componentFile, defaultLayoutFile, defaultLegendFile);
+	}
+	
+	public ClueGame(String componentFile, String layoutFile, String legendFile) {
 		componentConfig = new File(componentFile);
 		cards = new ArrayList<Card>();
 		players = new ArrayList<Player>();
-		board = new Board();
+		board = new Board(layoutFile, legendFile);
 		try {
 			board.loadConfigFiles();
 			board.loadBoard();
@@ -65,7 +73,7 @@ public class ClueGame extends JFrame {
         exit.addActionListener(new MenuListener());
        	setJMenuBar(menu);
        	
-       	detectiveNotes = new DetectiveNotesDialog();
+       	detectiveNotes = new DetectiveNotesDialog(cards);
        	
        	add(board, BorderLayout.CENTER);
        	
@@ -87,13 +95,13 @@ public class ClueGame extends JFrame {
 		String room = "", weapon = "", person = "";
 		int roomInd, weaponInd, personInd;
 		int r = rand.nextInt(cards.size());
-		while (cards.get(r).getCardType() != cardType.PLAYER) r=rand.nextInt(cards.size());
+		while (cards.get(r).getCardType() != CardType.PLAYER) r=rand.nextInt(cards.size());
 		person = cards.get(r).name;
 		personInd=r;
-		while (cards.get(r).getCardType() != cardType.ROOM) r=rand.nextInt(cards.size());
+		while (cards.get(r).getCardType() != CardType.ROOM) r=rand.nextInt(cards.size());
 		room = cards.get(r).name;
 		roomInd = r;
-		while (cards.get(r).getCardType() != cardType.WEAPON) r=rand.nextInt(cards.size());
+		while (cards.get(r).getCardType() != CardType.WEAPON) r=rand.nextInt(cards.size());
 		weapon = cards.get(r).name;
 		weaponInd = r;
 		
@@ -115,11 +123,17 @@ public class ClueGame extends JFrame {
 			Scanner scan = new Scanner(componentConfig);
 			Random rand = new Random();
 			int character = rand.nextInt(6);
+			Map <Character, String> roomNameMap = new HashMap<Character, String>();
 			for (int i=0; scan.hasNextLine(); i++) {
 				String next = scan.nextLine();
 				String[] separated = next.split(",");
 				if (separated[0].equals("PLAYER")) {
-					int startIndex = board.calcIndex(Integer.parseInt(separated[3]), Integer.parseInt(separated[4]));
+					int startIndex;
+					if (separated.length == 5) { //file has coordinates for player starting position
+						startIndex = board.calcIndex(Integer.parseInt(separated[3]), Integer.parseInt(separated[4]));
+					} else { //file has straight index
+						startIndex = Integer.parseInt(separated[3]);
+					}
 					if (i == character) {
 						players.add(new HumanPlayer (separated[1], separated[2],startIndex));
 						humanPlayerIndex = i;
@@ -127,7 +141,7 @@ public class ClueGame extends JFrame {
 					else players.add(new ComputerPlayer (separated[1], separated[2],startIndex));
 					players.get(players.size()-1).setCurrentLocation(board.getCellAt(startIndex));
 				}
-				cards.add(new Card(cardType.valueOf(separated[0]),separated[1]));
+				cards.add(new Card(CardType.valueOf(separated[0]),separated[1]));
 			}
 			
 			scan.close();
@@ -153,9 +167,9 @@ public class ClueGame extends JFrame {
 		for (Player p : players) {
 			if (!p.equals(accusingPerson)) {
 				ArrayList<Card> sameCards = new ArrayList<Card>();
-				Card playerCard = new Card(cardType.PLAYER, person);
-				Card weaponCard = new Card(cardType.WEAPON, weapon);
-				Card roomCard = new Card(cardType.ROOM, room);
+				Card playerCard = new Card(CardType.PLAYER, person);
+				Card weaponCard = new Card(CardType.WEAPON, weapon);
+				Card roomCard = new Card(CardType.ROOM, room);
 				
 				if (p.getCards().contains(playerCard)) sameCards.add(playerCard);
 				if (p.getCards().contains(weaponCard)) sameCards.add(weaponCard);

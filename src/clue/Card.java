@@ -1,18 +1,18 @@
 package clue;
 
 public class Card {
-	public enum cardType {ROOM, WEAPON, PLAYER};
+	public enum CardType {ROOM, WEAPON, PLAYER};
 	
 	public String name;
-	private cardType type;
+	private CardType type;
 	
 	
-	public Card(cardType type, String name) {
+	public Card(CardType type, String name) {
 		this.name = name;
 		this.type = type;
 	}
 	
-	public cardType getCardType() {
+	public CardType getCardType() {
 		return type;
 	}
 	

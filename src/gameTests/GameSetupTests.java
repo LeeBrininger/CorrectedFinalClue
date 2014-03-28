@@ -10,7 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import clue.*;
-import clue.Card.cardType;
+import clue.Card.CardType;
 
 
 public class GameSetupTests {
@@ -120,9 +120,9 @@ public class GameSetupTests {
 		
 		// Makes a new card of each type that should be in the deck and
 		// checks if they are actually present in the deck
-		Card player = new Card(cardType.PLAYER, "Sam");
-		Card weapon = new Card(cardType.WEAPON, "Bow");
-		Card room = new Card(cardType.ROOM, "Rivendell");
+		Card player = new Card(CardType.PLAYER, "Sam");
+		Card weapon = new Card(CardType.WEAPON, "Bow");
+		Card room = new Card(CardType.ROOM, "Rivendell");
 		assertTrue(game.getCards().contains(player));
 		assertTrue(game.getCards().contains(weapon));
 		assertTrue(game.getCards().contains(room));

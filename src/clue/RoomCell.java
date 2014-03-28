@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.HashMap;
+import java.util.Map;
 
 //An enumerated type named DoorDirection that specifies the location of the door relative to the room. 
 //Values will be UP, DOWN, LEFT, RIGHT and NONE.
@@ -14,8 +16,8 @@ public class RoomCell extends BoardCell{
 		UP, DOWN, LEFT, RIGHT, NONE
 	};
 	private DoorDirection direction;
-	private char doorCode;
 	private int nameRow, nameColumn;
+	private static Map<Character, String> roomNameMap;
 	String roomName;
 
 	//ArrayList<>
@@ -25,7 +27,6 @@ public class RoomCell extends BoardCell{
 		cellCode = C.charAt(0);
 		decodeRoomInitial(C.charAt(0));
 		decodeDirection(row, column, D);
-		doorCode = D.charAt(0);
 	}
 	
 	public RoomCell() {
@@ -36,36 +37,11 @@ public class RoomCell extends BoardCell{
 	}
 	
 	public String decodeRoomInitial(char code) {
-		switch (code) {
-			case 'P': 
-				roomName = "Billiard Room";
-				break;
-			case 'I':
-				roomName = "Library";
-				break;
-			case 'C':
-				roomName = "Conservatory";
-				break;
-			case 'L': 
-				roomName = "Lounge";
-				break;
-			case 'B': 
-				roomName = "Ballroom";
-				break;
-			case 'D': 
-				roomName = "Dining Room";
-				break;
-			case 'H': 
-				roomName = "Hall";
-				break;
-			case 'S':
-				roomName = "Study";
-				break;
-			case 'K': 
-				roomName = "Kitchen";
-				break;
+		if (roomNameMap.containsKey(code)) {
+			roomName = roomNameMap.get(code);
+		} else {
+			roomName = "No room name found";
 		}
-		
 		return roomName;
 	}
 	
@@ -102,12 +78,23 @@ public class RoomCell extends BoardCell{
 //	We will also override the draw method, when we do the GUI
 	// DoorDirection doorDirection;
 
+	@Override 
+	public boolean isDoorway() {
+		if (direction.equals(null) || direction.equals(DoorDirection.NONE)) {
+			return false;
+		}
+		return true;
+	}
 	public boolean isRoom(char room){
 		return true;
 	}
 
 	public char getInitial() {
 		return cellCode;
+	}
+	
+	public static void setRoomNameMap(Map<Character, String> roomNameMap) { //set the map of room names to room initials
+		RoomCell.roomNameMap = roomNameMap;
 	}
 	public String toString (){
 		String roomCellInfo =super.toString();
@@ -131,7 +118,7 @@ public class RoomCell extends BoardCell{
 		g2.fill(rect);
 		g2.draw(rect);
 
-		if (isDoorway("" + cellCode+doorCode)) {
+		if (isDoorway()) {
 			Rectangle door = null;
 			switch (direction) {
 				case UP:
@@ -149,11 +136,11 @@ public class RoomCell extends BoardCell{
 				case NONE:
 					break;
 			}
-			g.setColor(Color.BLACK);
-			if (nameRow != 0 && nameColumn != 0 && roomName != "") g.drawString(roomName, nameColumn*25, nameRow*25);
 			g2.setColor(Color.MAGENTA);
 			if (door!=null) g2.fill(door);
 		}
+		g.setColor(Color.BLACK);
+		if (nameRow != 0 && nameColumn != 0 && roomName != "") g.drawString(roomName, nameColumn*25, nameRow*25);
 	}
 	
 

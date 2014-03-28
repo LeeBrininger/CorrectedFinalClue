@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
-import clue.Card.cardType;
+import clue.Card.CardType;
 
 
 public class ComputerPlayer extends Player {
@@ -57,9 +57,9 @@ public class ComputerPlayer extends Player {
 	public Solution createSuggestion() {
 		Random rand = new Random();
 		Card player = unseenCards.get(rand.nextInt(unseenCards.size()));
-		while (player.getCardType() != cardType.PLAYER) player = unseenCards.get(rand.nextInt(unseenCards.size()));
+		while (player.getCardType() != CardType.PLAYER) player = unseenCards.get(rand.nextInt(unseenCards.size()));
 		Card weapon = unseenCards.get(rand.nextInt(unseenCards.size()));
-		while (weapon.getCardType() != cardType.WEAPON) weapon = unseenCards.get(rand.nextInt(unseenCards.size()));
+		while (weapon.getCardType() != CardType.WEAPON) weapon = unseenCards.get(rand.nextInt(unseenCards.size()));
 		return new Solution(player.getName(), weapon.getName(), ((RoomCell) getCurrentLocation()).decodeRoomInitial(((RoomCell) getCurrentLocation()).getInitial()));
 	}
 	
