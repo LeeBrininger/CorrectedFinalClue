@@ -127,7 +127,7 @@ public class RoomCell extends BoardCell{
 		
 		
 		if (cellCode == 'O') g2.setColor(Color.RED);
-		else g2.setColor(Color.LIGHT_GRAY);
+		else g2.setColor(Color.GREEN);
 		g2.fill(rect);
 		g2.draw(rect);
 
