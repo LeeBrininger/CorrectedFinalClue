@@ -1,0 +1,20 @@
+PLAYER,Frodo,PURPLE,92
+PLAYER,Sam,GREEN,253
+PLAYER,Aragorn,RED,190
+PLAYER,Gandalf,WHITE,10
+PLAYER,Legolas,YELLOW,229
+PLAYER,Gollum,BLACK,457
+WEAPON,Bow
+WEAPON,Battleaxe
+WEAPON,Wizard Staff
+WEAPON,Longsword
+WEAPON,Dagger
+WEAPON,The Ring
+ROOM,The Shire
+ROOM,Dunland
+ROOM,Ash Mountains
+ROOM,Rohan
+ROOM,Gondor
+ROOM,Rivendell
+ROOM,Rhun
+ROOM,Mirkwood
