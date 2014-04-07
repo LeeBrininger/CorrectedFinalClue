@@ -71,5 +71,13 @@ public class ComputerPlayer extends Player {
 		}
 		unseenCards.remove(seen);
 	}
+
+
+	@Override
+	public void handleTurn(Board board, int roll) {
+		board.calcTargets(getCurrentLocation().getRow(), getCurrentLocation().getColumn(), roll);
+		setCurrentLocation(pickLocation(board.getTargets()));
+		board.repaint();
+	}
 	
 }

@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -47,6 +49,18 @@ public class TurnPanel extends JPanel {
 		constraints.gridy= 1;
 		add(currentPlayerText, constraints);
 		
+	}
+	
+	public JButton getNextPlayerButton() {
+		return nextPlayerButton;
+	}
+	
+	public JButton getMakeAccusationButton() {
+		return makeAccusationButton;
+	}
+	
+	public JTextField getCurrentPlayerText() {
+		return currentPlayerText;
 	}
 
 }

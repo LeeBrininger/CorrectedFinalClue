@@ -50,9 +50,7 @@ public class Board extends JPanel {
     }
     
     public void paintComponent(Graphics g) {
-    	for (BoardCell cell : cells) {
-    		cell.draw(g);
-    	}
+    	for (BoardCell cell : cells) cell.draw(g);
     	for (Player p : players) p.draw(g);
     }
     

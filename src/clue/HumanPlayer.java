@@ -6,4 +6,15 @@ public class HumanPlayer extends Player {
 		super(name, color, startLocation);
 	}
 
+	
+	public void makeAccusation() {
+		
+	}
+
+
+	@Override
+	public void handleTurn(Board board, int roll) {
+		// TODO Auto-generated method stub
+		
+	}
 }

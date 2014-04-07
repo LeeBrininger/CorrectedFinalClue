@@ -9,8 +9,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -32,7 +30,8 @@ import clue.Card.CardType;
 public class ClueGame extends JFrame {
 	private ArrayList<Card> cards;
 	private ArrayList<Player> players;
-	private int humanPlayerIndex;
+	private boolean humanTurnFinished;
+	private int humanPlayerIndex, currentPlayerIndex;
 	private Solution solution;
 	private Board board;
 	private File componentConfig;
@@ -70,8 +69,6 @@ public class ClueGame extends JFrame {
 		// JFrame setup
 		setTitle("Clue");
 		
-		
-		
 		JMenuBar menu = new JMenuBar();
 		JMenu file = new JMenu("File");
 		JMenuItem showNotes = new JMenuItem("Show Detective Notes");
@@ -88,7 +85,7 @@ public class ClueGame extends JFrame {
        	
        	add(board, BorderLayout.CENTER);
        	
-       	controls = new ControlFrame();
+       	controls = new ControlFrame(this);
        	
        	add(controls.getContentPane(), BorderLayout.SOUTH);
        	
@@ -139,7 +136,6 @@ public class ClueGame extends JFrame {
 			Scanner scan = new Scanner(componentConfig);
 			Random rand = new Random();
 			int character = rand.nextInt(6);
-			Map <Character, String> roomNameMap = new HashMap<Character, String>();
 			for (int i=0; scan.hasNextLine(); i++) {
 				String next = scan.nextLine();
 				String[] separated = next.split(",");
@@ -153,6 +149,7 @@ public class ClueGame extends JFrame {
 					if (i == character) {
 						players.add(new HumanPlayer (separated[1], separated[2],startIndex));
 						humanPlayerIndex = i;
+						currentPlayerIndex = i-1;
 					}
 					else players.add(new ComputerPlayer (separated[1], separated[2],startIndex));
 					players.get(players.size()-1).setCurrentLocation(board.getCellAt(startIndex));
@@ -204,6 +201,20 @@ public class ClueGame extends JFrame {
 	public boolean checkAccusation(Solution solution) {
 		if (this.solution.equals(solution)) return true;
 		else return false;
+	}
+	
+	//TODO
+	public boolean checkTurnComplete() {
+		humanTurnFinished = false;
+		return humanTurnFinished;
+	}
+	
+	public int getCurrentPlayerIndex() {
+		return currentPlayerIndex;
+	}
+	
+	public void setCurrentPlayerIndex(int index) {
+		currentPlayerIndex = index;
 	}
 	
 	public ArrayList<Card> getCards() {
@@ -265,7 +276,6 @@ public class ClueGame extends JFrame {
 			p.setPreferredSize(new Dimension(100,100));
 			add(p);
 		}
-		
 		
 	}
 	

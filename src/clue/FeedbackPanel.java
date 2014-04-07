@@ -11,12 +11,13 @@ import javax.swing.border.TitledBorder;
 @SuppressWarnings("serial")
 public class FeedbackPanel extends JPanel {
 	
+	private JTextField text;
 	
 	public FeedbackPanel(String title, String name, String length) {
 		
 		setBorder(new TitledBorder(new EtchedBorder(), title));
 		JLabel label = new JLabel(name);
-		JTextField text = new JTextField();
+		text = new JTextField();
 		
 		switch(length) {
 			case "short":
@@ -32,6 +33,10 @@ public class FeedbackPanel extends JPanel {
 		add(label);
 		add(text);
 		
+	}
+
+	public JTextField getTextField() {
+		return text;
 	}
 
 }

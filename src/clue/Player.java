@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 
-public class Player {
+public abstract class Player {
 	
 	private final int PLAYER_DIAMETER = 25;
 	
@@ -77,6 +77,8 @@ public class Player {
 		g.setColor(Color.BLACK);
 		g.drawOval(currentLocation.getColumn()*PLAYER_DIAMETER, currentLocation.getRow()*PLAYER_DIAMETER, PLAYER_DIAMETER, PLAYER_DIAMETER);
 	}
+	
+	public abstract void handleTurn(Board board, int roll);
 	
 	@Override
 	public String toString() {
