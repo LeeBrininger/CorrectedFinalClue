@@ -114,11 +114,7 @@ public class RoomCell extends BoardCell{
 		
 		
 		if (cellCode == 'O') g2.setColor(Color.RED);
-<<<<<<< HEAD
-		else g2.setColor(Color.GREEN);
-=======
 		else g2.setColor(Color.LIGHT_GRAY);
->>>>>>> c79e39e58c44a1b7dd284cdaa0d678187d57f34c
 		g2.fill(rect);
 		g2.draw(rect);
 
@@ -144,11 +140,7 @@ public class RoomCell extends BoardCell{
 			if (door!=null) g2.fill(door);
 		}
 		g.setColor(Color.BLACK);
-<<<<<<< HEAD
-		if (nameRow != 0 && nameColumn != 0 && roomName != "") g.drawString(roomName, nameColumn*25, nameRow*25);
-=======
 		if (nameRow != 0 && nameColumn != 0 && roomName != "") g.drawString(roomName.toUpperCase(), nameColumn*25, nameRow*25);
->>>>>>> c79e39e58c44a1b7dd284cdaa0d678187d57f34c
 	}
 	
 
