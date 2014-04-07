@@ -47,7 +47,7 @@ public class ControlFrame extends JFrame {
 			currentPlayer.handleTurn(game.getBoard(), roll);
 			
 			
-		} else JOptionPane.showMessageDialog(this, "The current turn hasn't been completed yet!",
+		} else JOptionPane.showMessageDialog(game, "The current turn hasn't been completed yet!",
 	       			"ERROR", JOptionPane.ERROR_MESSAGE);
 	}
 	

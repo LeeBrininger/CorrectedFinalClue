@@ -205,7 +205,7 @@ public class ClueGame extends JFrame {
 	
 	//TODO
 	public boolean checkTurnComplete() {
-		humanTurnFinished = false;
+		humanTurnFinished = true;
 		return humanTurnFinished;
 	}
 	
