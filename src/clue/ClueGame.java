@@ -1,6 +1,8 @@
 package clue;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -13,10 +15,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 import clue.Card.CardType;
 
@@ -31,6 +38,7 @@ public class ClueGame extends JFrame {
 	private File componentConfig;
 	private DetectiveNotesDialog detectiveNotes;
 	private ControlFrame controls;
+	private MyCardsFrame humanCards;
 	private static final String defaultLayoutFile = "ClueLayout";
 	private static final String defaultLegendFile = "ClueLegend";
 	
@@ -43,6 +51,7 @@ public class ClueGame extends JFrame {
 		cards = new ArrayList<Card>();
 		players = new ArrayList<Player>();
 		board = new Board(layoutFile, legendFile);
+		
 		try {
 			board.loadConfigFiles();
 			board.loadBoard();
@@ -54,6 +63,7 @@ public class ClueGame extends JFrame {
 		board.calcAdjacencies();
 		
 		loadConfig();
+		deal();
 		
 		board.setPlayers(players);
 		
@@ -82,10 +92,12 @@ public class ClueGame extends JFrame {
        	
        	add(controls.getContentPane(), BorderLayout.SOUTH);
        	
-       	setSize((board.getNumColumns()+1)*board.getCellLength(),(board.getNumRows()+1)*board.getCellLength() + controls.getHeight());
+		humanCards = new MyCardsFrame((HumanPlayer) players.get(humanPlayerIndex));
+		
+		add(humanCards.getContentPane(), BorderLayout.EAST);
        	
-       	JOptionPane.showMessageDialog(this, "You are " + players.get(humanPlayerIndex) + ". Press the Next Player button to start!",
-       			"Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
+       	setSize((board.getNumColumns()+1)*board.getCellLength() + humanCards.getWidth(),(board.getNumRows()+1)*board.getCellLength() + controls.getHeight());
+       	
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -225,10 +237,45 @@ public class ClueGame extends JFrame {
 		
 	}
 	
+	class MyCardsFrame extends JFrame {
+		
+		public MyCardsFrame(HumanPlayer player) {
+			setLayout(new GridLayout(4,0));
+			setSize(100,100);
+			JPanel playerCards = new JPanel(), weaponCards = new JPanel(), roomCards = new JPanel();
+			
+			for (Card c : player.getCards())  {
+				CardType type = c.getCardType();
+				JTextField j = new JTextField();
+				j.setText(c.getName());
+				if (type == CardType.PLAYER) playerCards.add(j);
+				else if (type == CardType.WEAPON) weaponCards.add(j);
+				else roomCards.add(j);
+			}
+			
+			add(new JLabel("My Cards"));
+			addPanel("Players", playerCards);
+			addPanel("Weapons", weaponCards);
+			addPanel("Rooms", roomCards);
+			
+		}
+		
+		public void addPanel(String name, JPanel p) {
+			p.setBorder(new TitledBorder(new EtchedBorder(), name));
+			p.setPreferredSize(new Dimension(100,100));
+			add(p);
+		}
+		
+		
+	}
+	
 	public static void main(String[] args) {
 		ClueGame game = new ClueGame("componentConfig2.csv");
 		
 		game.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		game.setVisible(true);
+		
+		JOptionPane.showMessageDialog(game, "You are " + game.players.get(game.humanPlayerIndex) + ". Press the Next Player button to start!",
+       			"Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
