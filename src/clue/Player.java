@@ -78,5 +78,10 @@ public class Player {
 		g.drawOval(currentLocation.getColumn()*PLAYER_DIAMETER, currentLocation.getRow()*PLAYER_DIAMETER, PLAYER_DIAMETER, PLAYER_DIAMETER);
 	}
 	
+	@Override
+	public String toString() {
+		return name;
+	}
+	
 	
 }

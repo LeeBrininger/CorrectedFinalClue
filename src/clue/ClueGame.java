@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import clue.Card.CardType;
 
@@ -82,6 +83,9 @@ public class ClueGame extends JFrame {
        	add(controls.getContentPane(), BorderLayout.SOUTH);
        	
        	setSize((board.getNumColumns()+1)*board.getCellLength(),(board.getNumRows()+1)*board.getCellLength() + controls.getHeight());
+       	
+       	JOptionPane.showMessageDialog(this, "You are " + players.get(humanPlayerIndex) + ". Press the Next Player button to start!",
+       			"Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public void paintComponent(Graphics g) {
