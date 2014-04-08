@@ -65,6 +65,7 @@ public class ClueGame extends JFrame {
 		deal();
 
 		board.setPlayers(players);
+		board.setGame(this);
 
 		// JFrame setup
 		setTitle("Clue");
@@ -99,9 +100,7 @@ public class ClueGame extends JFrame {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
-		System.out.println("DFSF");
 		for (Player p : players) p.draw(g);
-		System.out.println("TEST" + board.getTargets());
 	}
 
 	public void deal() {
@@ -213,10 +212,22 @@ public class ClueGame extends JFrame {
 		else return false;
 	}
 
-	//TODO
+	
 	public boolean checkTurnComplete() {
-		humanTurnFinished = true;
 		return humanTurnFinished;
+	}
+	
+
+	
+	public boolean isHumanTurn() {
+		if (currentPlayerIndex == humanPlayerIndex) return true;
+		else return false;
+	}
+	
+	public void moveHuman(int row, int col) {
+		((HumanPlayer) players.get(humanPlayerIndex)).makeMove(board, row, col);
+		board.setHighlightTargets(false);
+		humanTurnFinished = true;
 	}
 
 	public int getCurrentPlayerIndex() {

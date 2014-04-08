@@ -20,5 +20,10 @@ public class HumanPlayer extends Player {
 		game.getBoard().setHighlightTargets(true);
 		game.getBoard().repaint();
 	}
+	
+	public void makeMove(Board board, int row, int col) {
+		setCurrentLocation(board.getCellAt(board.calcIndex(row, col)));
+		board.repaint();
+	}
 
 }

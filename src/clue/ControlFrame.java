@@ -37,18 +37,19 @@ public class ControlFrame extends JFrame {
 	}
 	
 	public void nextPlayer() {
-		if (game.checkTurnComplete()) {
-			if (game.getCurrentPlayerIndex() == 5) game.setCurrentPlayerIndex(0);
-			else game.setCurrentPlayerIndex(game.getCurrentPlayerIndex()+1);;
-			Player currentPlayer = game.getPlayers().get(game.getCurrentPlayerIndex());
-			turnPanel.getCurrentPlayerText().setText(currentPlayer.toString());
-			int roll = new Random().nextInt(6)+1;
-			rollPanel.getTextField().setText(Integer.toString(roll));
-			currentPlayer.handleTurn(game, roll);
-			
-			
-		} else JOptionPane.showMessageDialog(game, "The current turn hasn't been completed yet!",
+		if (game.isHumanTurn() && !game.checkTurnComplete()) {
+			JOptionPane.showMessageDialog(game, "The current turn hasn't been completed yet!",
 	       			"ERROR", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		if(game.isHumanTurn()) game.setHumanTurnFinished(false);
+		if (game.getCurrentPlayerIndex() == 5) game.setCurrentPlayerIndex(0);
+		else game.setCurrentPlayerIndex(game.getCurrentPlayerIndex()+1);;
+		Player currentPlayer = game.getPlayers().get(game.getCurrentPlayerIndex());
+		turnPanel.getCurrentPlayerText().setText(currentPlayer.toString());
+		int roll = new Random().nextInt(6)+1;
+		rollPanel.getTextField().setText(Integer.toString(roll));
+		currentPlayer.handleTurn(game, roll);	
 	}
 	
 	class ButtonListener implements ActionListener {

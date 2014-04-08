@@ -1,6 +1,8 @@
 package clue;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.io.File;
@@ -16,6 +18,7 @@ public class Board extends JPanel {
 	private final int CELL_LENGTH = 25;
 
 	private ArrayList<BoardCell> cells;//contains the board layout
+	private ClueGame game;
 	private Set<BoardCell> targets;
 	private BoardCell target;
 	private ArrayList<Boolean> visited;
@@ -38,6 +41,7 @@ public class Board extends JPanel {
 		this.boardName = fileLayout;
 		this.legendName = fileLegend;
 		adjCells = new HashMap<Integer, LinkedList<Integer>>();
+		addMouseListener(new BoardListener());
 
 	}
 	public Board() {
@@ -47,22 +51,31 @@ public class Board extends JPanel {
 		this.boardName = "ClueLayout";
 		this.legendName = "ClueLegend";
 		adjCells = new HashMap<Integer, LinkedList<Integer>>();
-
+		addMouseListener(new BoardListener());
 	}
 
+	public void setGame(ClueGame game) {
+		this.game = game;
+	}
+	
 	public void setHighlightTargets(boolean setHighlight) {
 		highlightTargets = setHighlight;
+	}
+	
+	public boolean isHighlightTargets() {
+		return highlightTargets;
 	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		for (BoardCell cell : cells) {
 			cell.draw(g);
+			cell.setHighlighted(false);
 		}
 		if (highlightTargets) {
 			for (BoardCell cell : targets) {
-				System.out.println("TEST");
 				cell.drawHighlighted(g);
+				cell.setHighlighted(true);
 			}
 		}
 		for (Player p : players) p.draw(g);
@@ -415,8 +428,43 @@ public class Board extends JPanel {
 		System.out.println(count);
 	}
 	//--------PRINTER METHODS----------//
+	
+	
+	class BoardListener implements MouseListener {
+		
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			int x = arg0.getX()/CELL_LENGTH;
+			int y = arg0.getY()/CELL_LENGTH;
+			if (getCellAt(calcIndex(y,x)).isHighlighted()) game.moveHuman(y, x);
+			
+		}
 
+		@Override
+		public void mouseEntered(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
 
+		@Override
+		public void mouseExited(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
 }//Board
 
 
