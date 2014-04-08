@@ -1,6 +1,9 @@
 package clue;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 
 public abstract class BoardCell {
 	private int row;
@@ -76,7 +79,14 @@ public abstract class BoardCell {
 	}
 	
 	public abstract void draw(Graphics g);
-
-
+	public void drawHighlighted(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		Rectangle rect = new Rectangle(getColumn()*25, getRow()*25, 25, 25);
+		g2.setColor(Color.BLUE);
+		g2.fill(rect);
+		g2.setColor(Color.BLACK);
+		g2.draw(rect);
+	}
+	
 	
 }

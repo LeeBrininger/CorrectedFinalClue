@@ -74,10 +74,11 @@ public class ComputerPlayer extends Player {
 
 
 	@Override
-	public void handleTurn(Board board, int roll) {
-		board.calcTargets(getCurrentLocation().getRow(), getCurrentLocation().getColumn(), roll);
-		setCurrentLocation(pickLocation(board.getTargets()));
-		board.repaint();
+	public void handleTurn(ClueGame game, int roll) {
+		game.getBoard().setHighlightTargets(false);
+		game.getBoard().calcTargets(getCurrentLocation().getRow(), getCurrentLocation().getColumn(), roll);
+		setCurrentLocation(pickLocation(game.getBoard().getTargets()));
+		game.getBoard().repaint();
 	}
 	
 }

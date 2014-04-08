@@ -76,14 +76,14 @@ public abstract class Player {
 
 		g.setColor(Color.BLACK);
 		g.drawOval(currentLocation.getColumn()*PLAYER_DIAMETER, currentLocation.getRow()*PLAYER_DIAMETER, PLAYER_DIAMETER, PLAYER_DIAMETER);
-	}
-	
-	public abstract void handleTurn(Board board, int roll);
+	}	
 	
 	@Override
 	public String toString() {
 		return name;
 	}
+
+	public abstract void handleTurn(ClueGame game, int roll);
 	
 	
 }

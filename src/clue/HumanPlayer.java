@@ -13,8 +13,12 @@ public class HumanPlayer extends Player {
 
 
 	@Override
-	public void handleTurn(Board board, int roll) {
+	public void handleTurn(ClueGame game, int roll) {
 		// TODO Auto-generated method stub
-		
+		game.setHumanTurnFinished(false);
+		game.getBoard().calcTargets(getCurrentLocation().getRow(), getCurrentLocation().getColumn(), roll);
+		game.getBoard().setHighlightTargets(true);
+		game.getBoard().repaint();
 	}
+
 }

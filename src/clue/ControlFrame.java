@@ -44,7 +44,7 @@ public class ControlFrame extends JFrame {
 			turnPanel.getCurrentPlayerText().setText(currentPlayer.toString());
 			int roll = new Random().nextInt(6)+1;
 			rollPanel.getTextField().setText(Integer.toString(roll));
-			currentPlayer.handleTurn(game.getBoard(), roll);
+			currentPlayer.handleTurn(game, roll);
 			
 			
 		} else JOptionPane.showMessageDialog(game, "The current turn hasn't been completed yet!",
