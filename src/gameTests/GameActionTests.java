@@ -271,7 +271,6 @@ static ClueGame game;
 	@Test
 	public void testComputerSuggestionOnePossible() {
 		game.clearDeal();
-		System.out.println("se");
 		ComputerPlayer player = new ComputerPlayer("Frodo", "PURPLE", 92);
 		// Update the player's seen cards with every single one except for the two that he will use
 		player.updateSeen(new Card(CardType.PLAYER, "Frodo"), game.getCards());
@@ -284,14 +283,11 @@ static ClueGame game;
 		player.updateSeen(new Card(CardType.WEAPON, "Longsword"), game.getCards());
 		player.updateSeen(new Card(CardType.WEAPON, "Dagger"), game.getCards());
 		player.updateSeen(new Card(CardType.WEAPON, "Battleaxe"), game.getCards());
-		System.out.println("se2");
 		
 		// Sets the player's current location to Mirkwood
 		player.setCurrentLocation(game.getBoard().getCellAt(game.getBoard().calcIndex(4,19)));
-		System.out.println("se3");
 		
 		assertEquals(new Solution("Aragorn", "Bow", "Mirkwood"), player.createSuggestion());
-		System.out.println("se4");
 	}
 	
 	// Test for when computer makes a suggestion and only one is possible
