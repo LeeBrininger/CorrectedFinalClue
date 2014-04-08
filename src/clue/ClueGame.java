@@ -29,6 +29,7 @@ import clue.Card.CardType;
 @SuppressWarnings("serial")
 public class ClueGame extends JFrame {
 	private ArrayList<Card> cards;
+	private ArrayList<Card> cardsNotShuffled; //used in testing
 	private ArrayList<Player> players;
 	private boolean humanTurnFinished;
 	private int humanPlayerIndex, currentPlayerIndex;
@@ -62,6 +63,7 @@ public class ClueGame extends JFrame {
 		board.calcAdjacencies();
 
 		loadConfig();
+		cardsNotShuffled = new ArrayList(cards);
 		deal();
 
 		board.setPlayers(players);
@@ -173,6 +175,7 @@ public class ClueGame extends JFrame {
 	
 	//used to help set up tests
 	public void clearDeal() {
+		cards = cardsNotShuffled;
 		for (Player x: players) {
 			x.clearCards();
 		}
