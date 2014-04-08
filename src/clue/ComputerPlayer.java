@@ -71,6 +71,12 @@ public class ComputerPlayer extends Player {
 		}
 		unseenCards.remove(seen);
 	}
+	
+	@Override
+	public void clearCards() {
+		super.clearCards();
+		unseenCards.clear();
+	}
 
 
 	@Override

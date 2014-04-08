@@ -135,6 +135,7 @@ public class GameSetupTests {
 	 */
 	@Test
 	public void testDealCards() {
+		game.clearDeal();
 		game.deal();
 		ArrayList<Card> existing = new ArrayList<Card>();
 		int cardsDealt = 0;

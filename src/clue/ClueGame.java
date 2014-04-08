@@ -170,6 +170,13 @@ public class ClueGame extends JFrame {
 	public void setSolution(String person, String weapon, String room) {
 		solution = new Solution(person, weapon, room);
 	}
+	
+	//used to help set up tests
+	public void clearDeal() {
+		for (Player x: players) {
+			x.clearCards();
+		}
+	}
 
 	public void makePlayer(String name, String color, int startLoc) {
 

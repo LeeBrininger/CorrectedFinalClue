@@ -26,6 +26,11 @@ public abstract class Player {
 		myCards = new ArrayList<Card>();
 	}
 	
+	//used to help set up tests
+	public void clearCards() {
+		myCards.clear();
+	}
+	
 	public Card disproveSuggestion(String person, String room, String weapon) {
 		return null;
 	}
