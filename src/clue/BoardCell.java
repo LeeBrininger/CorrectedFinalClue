@@ -9,10 +9,12 @@ public abstract class BoardCell {
 	private int row;
 	private int column;
 	protected char cellCode;
+	private boolean isHighlighted;
 	
 	public BoardCell (int row, int column){
 		this.row = row;
 		this.column = column;
+		isHighlighted = false;
 	}
 
 	public BoardCell() {
@@ -79,6 +81,15 @@ public abstract class BoardCell {
 	}
 	
 	public abstract void draw(Graphics g);
+	
+	public void setHighlighted(boolean isHighlighted) {
+		this.isHighlighted = isHighlighted;
+	}
+	
+	public boolean isHighlighted() {
+		return isHighlighted;
+	}
+	
 	public void drawHighlighted(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		Rectangle rect = new Rectangle(getColumn()*25, getRow()*25, 25, 25);
