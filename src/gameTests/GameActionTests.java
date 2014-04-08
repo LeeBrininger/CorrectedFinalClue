@@ -266,7 +266,7 @@ static ClueGame game;
 	}
 	
 	//NOTE: updates made changed the following tests to not be compliant with the program
-	/*
+	
 	// Test for when computer makes a suggestion and only one is possible
 	@Test
 	public void testComputerSuggestionOnePossible() {
@@ -336,6 +336,6 @@ static ClueGame game;
 			assertTrue(sol_Legolas_Bow > 10);
 			assertTrue(sol_Legolas_Longsword > 10);
 		}
-		*/
+		
 	
 }
