@@ -62,7 +62,7 @@ public class ClueGame extends JFrame {
 		board.calcAdjacencies();
 		
 		loadConfig();
-		//deal(); deal now done in main to keep tests passing
+		deal();
 		
 		board.setPlayers(players);
 		
@@ -281,7 +281,6 @@ public class ClueGame extends JFrame {
 	
 	public static void main(String[] args) {
 		ClueGame game = new ClueGame("componentConfig2.csv");
-		game.deal();
 		
 		game.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		game.setVisible(true);
