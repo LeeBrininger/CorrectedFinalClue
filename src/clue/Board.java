@@ -8,6 +8,7 @@ import java.util.*;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import clue.BoardCell;
@@ -434,9 +435,13 @@ public class Board extends JPanel {
 		
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			int x = arg0.getX()/CELL_LENGTH;
-			int y = arg0.getY()/CELL_LENGTH;
-			if (getCellAt(calcIndex(y,x)).isHighlighted()) game.moveHuman(y, x);
+			if (game.isHumanTurn()) {
+				int x = arg0.getX()/CELL_LENGTH;
+				int y = arg0.getY()/CELL_LENGTH;
+				if (getCellAt(calcIndex(y,x)).isHighlighted()) game.moveHuman(y, x);
+				else JOptionPane.showMessageDialog(game, "That target is invalid.",
+		       			"ERROR", JOptionPane.ERROR_MESSAGE);
+			}
 			
 		}
 
