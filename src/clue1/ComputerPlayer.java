@@ -1,9 +1,9 @@
-package clue;
+package clue1;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
 
-import clue.Card.CardType;
+import clue1.Card.CardType;
 
 
 public class ComputerPlayer extends Player {

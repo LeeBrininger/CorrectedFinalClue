@@ -1,4 +1,4 @@
-package clue;
+package clue1;
 
 public class Card {
 	public enum CardType {ROOM, WEAPON, PLAYER};

@@ -1,4 +1,4 @@
-package clue;
+package clue1;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -11,7 +11,6 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import clue.BoardCell;
 
 @SuppressWarnings("serial")
 public class Board extends JPanel {

@@ -1,4 +1,4 @@
-package clue;
+package clue1;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import clue.Card.CardType;
+import clue1.Card.CardType;
 
 
 @SuppressWarnings("serial")

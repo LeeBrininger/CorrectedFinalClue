@@ -9,8 +9,8 @@ import java.util.Random;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import clue.*;
-import clue.Card.CardType;
+import clue1.*;
+import clue1.Card.CardType;
 
 
 public class GameSetupTests {

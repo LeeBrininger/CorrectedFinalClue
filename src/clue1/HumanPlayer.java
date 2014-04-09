@@ -1,4 +1,4 @@
-package clue;
+package clue1;
 
 public class HumanPlayer extends Player {
 
