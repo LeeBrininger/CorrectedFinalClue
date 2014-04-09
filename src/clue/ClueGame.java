@@ -97,6 +97,7 @@ public class ClueGame extends JFrame {
 		add(humanCards.getContentPane(), BorderLayout.EAST);
 
 		setSize((board.getNumColumns()+1)*board.getCellLength() + humanCards.getWidth(),(board.getNumRows()+1)*board.getCellLength() + controls.getHeight());
+
 		for(Player x: players){
 			x.updateSeen(null, cards);
 		}
@@ -181,7 +182,9 @@ public class ClueGame extends JFrame {
 			x.clearCards();
 		}
 	}
+
 /*
+
 	public void makePlayer(String name, String color, int startLoc) {
 
 	}
@@ -194,7 +197,7 @@ public class ClueGame extends JFrame {
 		return handleSuggestion(guesses.getPerson(), guesses.getWeapon() ,guesses.getRoom(), accusingPerson);
 		
 	}
-	
+
 	public Card handleSuggestion(String person, String weapon, String room, Player accusingPerson) {
 		for (Player p : players) {
 			if (!p.equals(accusingPerson)) {
@@ -311,7 +314,6 @@ public class ClueGame extends JFrame {
 			p.setPreferredSize(new Dimension(100,100));
 			add(p);
 		}
-		
 
 	}
 
@@ -328,4 +330,5 @@ public class ClueGame extends JFrame {
 	public ControlFrame getControlPanel() {
 		return controls;
 	}
+
 }

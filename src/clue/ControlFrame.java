@@ -38,6 +38,7 @@ public class ControlFrame extends JFrame {
 	
 	public void nextPlayer() {
 		
+
 		if (game.isHumanTurn() && !game.checkTurnComplete()) {
 			JOptionPane.showMessageDialog(game, "The current turn hasn't been completed yet!",
 	       			"ERROR", JOptionPane.ERROR_MESSAGE);
@@ -48,7 +49,9 @@ public class ControlFrame extends JFrame {
 		else game.setCurrentPlayerIndex(game.getCurrentPlayerIndex()+1);;
 		Player currentPlayer = game.getPlayers().get(game.getCurrentPlayerIndex());
 		turnPanel.getCurrentPlayerText().setText(currentPlayer.toString());
+
 		
+
 		int roll = new Random().nextInt(6)+1;
 		rollPanel.getTextField().setText(Integer.toString(roll));
 		currentPlayer.handleTurn(game, roll);	

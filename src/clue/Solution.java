@@ -21,7 +21,6 @@ public class Solution {
 	public String getRoom() {
 		return room;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
@@ -39,4 +38,5 @@ public class Solution {
 	public String toOutputString(){
 		return person + " in the " + room + " with the " + weapon;
 	}
+
 }

@@ -39,6 +39,7 @@ public class RoomCell extends BoardCell{
 	public boolean checkRoom(){
 		return true;
 	}
+
 	public String decodeRoomInitial(char code) {
 		if (roomNameMap.containsKey(code)) {
 			roomName = roomNameMap.get(code);

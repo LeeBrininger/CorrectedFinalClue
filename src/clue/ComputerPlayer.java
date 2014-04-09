@@ -62,6 +62,7 @@ public class ComputerPlayer extends Player {
 		while (weapon.getCardType() != CardType.WEAPON) weapon = unseenCards.get(rand.nextInt(unseenCards.size()));
 		return new Solution(player.getName(), weapon.getName(), ((RoomCell) getCurrentLocation()).decodeRoomInitial(((RoomCell) getCurrentLocation()).getInitial()));
 	}
+
 	@Override
 	public void updateSeen(Card seen, ArrayList<Card> deck) {
 		if (unseenCards.size() == 0) {
@@ -92,6 +93,7 @@ public class ComputerPlayer extends Player {
 			game.getControlPanel().displayGuess(solution.toOutputString(), feedback.getName());
 			
 		}
+
 	}
 	
 }

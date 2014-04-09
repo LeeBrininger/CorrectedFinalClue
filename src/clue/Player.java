@@ -16,7 +16,7 @@ public abstract class Player {
 	private Color color;
 	private int startLocation;
 	protected BoardCell currentLocation;
-	
+
 	public Player (String name, String color, int startLocation) {
 		this.name = name;
 		if (color.equals("PURPLE")) this.color = new Color(102,0,102);
@@ -88,8 +88,9 @@ public abstract class Player {
 		return name;
 	}
 
+
 	public void updateSeen(Card seen, ArrayList<Card> deck) {}
-	
+
 	public abstract void handleTurn(ClueGame game, int roll);
 	
 	
