@@ -1,0 +1,10 @@
+R, Rohan	
+D, Dunland			
+W, Walk Path
+G, Gondor
+I, Mirkwood
+A, Ash Mountains
+S, The Shire
+M, Mordor
+N, Rivendell
+U, Rhun

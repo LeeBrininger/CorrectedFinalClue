@@ -1,0 +1,11 @@
+C, Conservatory
+K, Kitchen
+B, Ballroom
+P, Billiard room
+I, Library
+S, Study
+D, Dining room
+L, Lounge
+H, Hall
+O, Closet
+X, Walkway
