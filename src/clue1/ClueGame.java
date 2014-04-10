@@ -70,7 +70,7 @@ public class ClueGame extends JFrame {
 
 		board.setPlayers(players);
 		board.setGame(this);
-
+		System.out.println("");
 		// JFrame setup
 		setTitle("Clue");
 
@@ -256,7 +256,7 @@ public class ClueGame extends JFrame {
 			room = ((Player) players.get(humanPlayerIndex)).returnRoom();
 			suggestionDialog = new SuggestionDialog(cards, this, room);
 			suggestionDialog.setVisible(true);
-			System.out.println("SUGGEST");
+			//System.out.println("SUGGEST");
 		}
 		board.setHighlightTargets(false);
 		humanTurnFinished = true;
