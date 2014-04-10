@@ -62,7 +62,13 @@ public class ComputerPlayer extends Player {
 		while (weapon.getCardType() != CardType.WEAPON) weapon = unseenCards.get(rand.nextInt(unseenCards.size()));
 		return new Solution(player.getName(), weapon.getName(), ((RoomCell) getCurrentLocation()).decodeRoomInitial(((RoomCell) getCurrentLocation()).getInitial()));
 	}
-
+	
+	//simply removes card from the list of unseen Cards
+	@Override public void updateSeen(Card seen) {
+		unseenCards.remove(seen);
+	}
+	//if no unseen cards, set unseen cards equal to deck without rooms
+	//otherwise remove card from list of unseen cards
 	@Override
 	public void updateSeen(Card seen, ArrayList<Card> deck) {
 		if (unseenCards.size() == 0) {
@@ -70,7 +76,7 @@ public class ComputerPlayer extends Player {
 			//removes the rooms from the deck
 			for (int i = 0; i<8; i++) unseenCards.remove(unseenCards.size()-1);
 		}
-		unseenCards.remove(seen);
+		updateSeen(seen);
 	}
 	
 	@Override

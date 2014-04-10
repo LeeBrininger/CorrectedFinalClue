@@ -198,24 +198,33 @@ public class ClueGame extends JFrame {
 		
 	}
 
+	@SuppressWarnings("unused")
 	public Card handleSuggestion(String person, String weapon, String room, Player accusingPerson) {
+		Card response = null;
 		for (Player p : players) {
-			if (!p.equals(accusingPerson)) {
+			if (!p.equals(accusingPerson)) { //the accusing person cannot disprove 
 				ArrayList<Card> sameCards = new ArrayList<Card>();
 				Card playerCard = new Card(CardType.PLAYER, person);
 				Card weaponCard = new Card(CardType.WEAPON, weapon);
 				Card roomCard = new Card(CardType.ROOM, room);
-
+				
+				//set up the cards that can be used to disprove
 				if (p.getCards().contains(playerCard)) sameCards.add(playerCard);
 				if (p.getCards().contains(weaponCard)) sameCards.add(weaponCard);
 				if (p.getCards().contains(roomCard)) sameCards.add(roomCard);
-
+				
 				if (sameCards.size() == 1) return sameCards.get(0);
 				else if (sameCards.size() > 1) {
 					Random rand = new Random();
 					return sameCards.get(rand.nextInt(sameCards.size()));
 				}
 			}
+		}
+		if (!(response == null)) { //if card found to disprove
+			for (Player p: players) { //show card to all players
+				p.updateSeen(response);
+			}
+			return response;
 		}
 		return null;
 	}

@@ -88,7 +88,7 @@ public abstract class Player {
 		return name;
 	}
 
-
+	public void updateSeen(Card seen) {}
 	public void updateSeen(Card seen, ArrayList<Card> deck) {}
 
 	public abstract void handleTurn(ClueGame game, int roll);
