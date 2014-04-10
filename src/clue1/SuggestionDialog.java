@@ -1,5 +1,6 @@
 package clue1;
 
+import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.util.ArrayList;
@@ -16,11 +17,11 @@ public class SuggestionDialog extends JDialog {
 	
 	private JComboBox<String> playerCombobox, weaponCombobox, roomCombobox;
 	
-	public SuggestionDialog(ArrayList<Card> deck, ClueGame game) {
+	public SuggestionDialog(ArrayList<Card> deck, ClueGame game, String room) {
 		setTitle("Make Suggestion");
 		setSize(500, 500);
 		
-		setLayout(new GridLayout(3,2));
+		setLayout(new GridLayout(4,2));
 		playerCombobox = new JComboBox<String>();
 		weaponCombobox = new JComboBox<String>();
 		roomCombobox = new JComboBox<String>();
@@ -37,12 +38,14 @@ public class SuggestionDialog extends JDialog {
 			}
 		}
 		
-		add(new Label("Room"));
-		add(roomCombobox);
+		add(new Label("Your Room"));
+		add(new Label(room));
 		add(new Label("Person"));
 		add(playerCombobox);
 		add(new Label("Weapon"));
 		add(weaponCombobox);
+		add(new Button("Submit"));
+		add(new Button("Cancel"));
 		
 	}
 }

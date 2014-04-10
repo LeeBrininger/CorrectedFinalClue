@@ -189,7 +189,6 @@ public class Board extends JPanel {
 
 		RoomCell.setRoomNameMap(rooms); //allow RoomCell to use this map to decode room initials
 		scan.close();
-
 	}
 	public boolean isValidCellCode(String code){
 		return rooms.containsKey(code.charAt(0));

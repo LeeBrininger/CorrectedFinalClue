@@ -75,6 +75,7 @@ public abstract class Player {
 		return color;
 	}
 	
+	
 	public void draw(Graphics g) {
 		g.setColor(color);
 		g.fillOval(currentLocation.getColumn()*PLAYER_DIAMETER, currentLocation.getRow()*PLAYER_DIAMETER, PLAYER_DIAMETER, PLAYER_DIAMETER);
@@ -92,6 +93,9 @@ public abstract class Player {
 	public void updateSeen(Card seen, ArrayList<Card> deck) {}
 
 	public abstract void handleTurn(ClueGame game, int roll);
-	
+
+	public String returnRoom() {
+		return ((RoomCell) getCurrentLocation()).decodeRoomInitial(((RoomCell) getCurrentLocation()).getInitial());
+	}
 	
 }

@@ -42,6 +42,7 @@ public class ClueGame extends JFrame {
 	private static final String defaultLayoutFile = "ClueLayout";
 	private static final String defaultLegendFile = "ClueLegend";
 	private SuggestionDialog suggestionDialog;
+	private String room;
 
 	public ClueGame(String componentFile) {
 		this(componentFile, defaultLayoutFile, defaultLegendFile);
@@ -86,7 +87,7 @@ public class ClueGame extends JFrame {
 		setJMenuBar(menu);
 
 		detectiveNotes = new DetectiveNotesDialog(cards);
-		suggestionDialog = new SuggestionDialog(cards, this);
+
 
 		add(board, BorderLayout.CENTER);
 
@@ -252,8 +253,10 @@ public class ClueGame extends JFrame {
 		((HumanPlayer) players.get(humanPlayerIndex)).makeMove(board, row, col);
 		//promt for suggestion if human moved to room
 		if (((HumanPlayer) players.get(humanPlayerIndex)).getCurrentLocation().checkRoom()) {
-				suggestionDialog.setVisible(true);
-				System.out.println("SUGGEST");
+			room = ((Player) players.get(humanPlayerIndex)).returnRoom();
+			suggestionDialog = new SuggestionDialog(cards, this, room);
+			suggestionDialog.setVisible(true);
+			System.out.println("SUGGEST");
 		}
 		board.setHighlightTargets(false);
 		humanTurnFinished = true;
