@@ -256,7 +256,6 @@ public class ClueGame extends JFrame {
 			room = ((Player) players.get(humanPlayerIndex)).returnRoom();
 			suggestionDialog = new SuggestionDialog(cards, this, room);
 			suggestionDialog.setVisible(true);
-			//System.out.println("SUGGEST");
 		}
 		board.setHighlightTargets(false);
 		humanTurnFinished = true;
@@ -338,7 +337,7 @@ public class ClueGame extends JFrame {
 
 	public static void main(String[] args) {
 		ClueGame game = new ClueGame("componentConfig2.csv");
-
+		System.out.println("Found a big error, players can occupy the same space");
 		game.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		game.setVisible(true);
 
