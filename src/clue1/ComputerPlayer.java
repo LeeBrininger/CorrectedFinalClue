@@ -92,7 +92,8 @@ public class ComputerPlayer extends Player {
 	
 	private void makeAccusation(ClueGame game) {
 		makeAccusation = false;
-		game.handleAccusation(accusation, this);
+		game.handleAccusation(new Solution(accusation.getPerson(), accusation.getWeapon(),
+				accusation.getRoom()), this);
 	}
 
 	@Override

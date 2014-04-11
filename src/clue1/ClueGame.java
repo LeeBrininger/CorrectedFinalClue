@@ -210,7 +210,7 @@ public class ClueGame extends JFrame {
 			this.dispose();
 		} else {
 			JOptionPane.showMessageDialog(this, accusingPerson.getName() + " incorrectly guessed "
-					+ solution.toOutputString(), "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
+					+ guess.toOutputString(), "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
 			setHumanTurnFinished(true);
 			controls.nextPlayer();
 		}
