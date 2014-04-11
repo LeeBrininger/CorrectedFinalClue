@@ -21,8 +21,12 @@ public class SuggestionDialog extends JDialog {
 	private JComboBox<String> playerCombobox, weaponCombobox;
 	private Label roomNameLabel;
 	private JButton submit, cancel;
+	private ClueGame game;
+	private String room;
 	
 	public SuggestionDialog(ArrayList<Card> deck, ClueGame game, String room) {
+		this.room = room;
+		this.game = game;
 		setTitle("Make Suggestion");
 		setSize(500, 500);
 		
@@ -51,7 +55,6 @@ public class SuggestionDialog extends JDialog {
 		add(playerCombobox);
 		add(new Label("Weapon"));
 		add(weaponCombobox);
-		JButton submit = new JButton("ok");
 		add(submit);
 		add(cancel);
 		
@@ -59,6 +62,7 @@ public class SuggestionDialog extends JDialog {
 	
 	public void setRoomName(String roomName) {
 		roomNameLabel.setText(roomName);
+		room = roomName;
 	}
 	
 	public JButton getSubmitButton() {
@@ -73,12 +77,21 @@ public class SuggestionDialog extends JDialog {
 		this.dispose();
 	}
 	
+	public void makeSuggestion() {
+		Solution suggestion = new Solution((String) playerCombobox.getSelectedItem(), 
+				(String) weaponCombobox.getSelectedItem(), room);
+		System.out.println("tESTING" + suggestion + game.getHumanPlayer().getName());
+		Card feedback = game.handleSuggestion(suggestion, game.getHumanPlayer());
+		game.getControlPanel().displayGuess(suggestion.toOutputString(), feedback.getName());
+		this.dispose();
+	}
+	
 	private class SuggestionDialogButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (((JButton) e.getSource()) == cancel) closeWindow();
-			//else if (((JButton) e.getSource()) == turnPanel.getMakeAccusationButton()) accusation();
+			else if (((JButton) e.getSource()) == submit) makeSuggestion();
 		}
 		
 		

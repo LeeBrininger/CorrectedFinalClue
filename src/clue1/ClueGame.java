@@ -198,6 +198,7 @@ public class ClueGame extends JFrame {
 	}
 */
 	public Card handleSuggestion(Solution guesses, Player accusingPerson){
+		System.out.println(guesses);
 		return handleSuggestion(guesses.getPerson(), guesses.getWeapon() ,guesses.getRoom(), accusingPerson);
 		
 	}
@@ -285,6 +286,10 @@ public class ClueGame extends JFrame {
 
 	public int getHumanPlayerIndex() {
 		return humanPlayerIndex;
+	}
+	
+	public Player getHumanPlayer() {
+		return players.get(getHumanPlayerIndex());
 	}
 
 	public void setHumanTurnFinished(boolean isFinished) {

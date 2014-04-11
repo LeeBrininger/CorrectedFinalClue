@@ -79,7 +79,7 @@ public class ControlFrame extends JFrame {
 	}
 	
 	public void displayGuess(String guess, String feedback){
-		//guessPanel.getTextField().setText(guess);
+		guessPanel.getTextField().setText(guess);
 		resultPanel.getTextField().setText(feedback);		
 	}
 	

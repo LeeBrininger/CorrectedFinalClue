@@ -67,13 +67,16 @@ public class GuessDialog extends JDialog {
 	public void closeWindow() {
 		this.dispose();
 	}
-
+	
+	public void makeAccusation() {
+		this.dispose();
+	}
 	private class GuessDialogButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (((JButton) e.getSource()) == cancel) closeWindow();
-			//else if (((JButton) e.getSource()) == turnPanel.getMakeAccusationButton()) accusation();
+			else if (((JButton) e.getSource()) == submit) makeAccusation();
 		}
 		
 		
