@@ -244,10 +244,13 @@ public class ClueGame extends JFrame {
 				if (p.getCards().contains(weaponCard)) sameCards.add(weaponCard);
 				if (p.getCards().contains(roomCard)) sameCards.add(roomCard);
 				
-				if (sameCards.size() == 1) return sameCards.get(0);
-				else if (sameCards.size() > 1) {
+				if (sameCards.size() == 1) { 
+					response = sameCards.get(0);
+					break;
+				
+				}   else if (sameCards.size() > 1) {
 					Random rand = new Random();
-					return sameCards.get(rand.nextInt(sameCards.size()));
+					response =  sameCards.get(rand.nextInt(sameCards.size()));
 				}
 			}
 		}
