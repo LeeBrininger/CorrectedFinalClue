@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -15,7 +16,7 @@ import clue1.DetectiveNotesDialog.CheckboxPanel;
 
 public class SuggestionDialog extends JDialog {
 	
-	private JComboBox<String> playerCombobox, weaponCombobox, roomCombobox;
+	private JComboBox<String> playerCombobox, weaponCombobox;
 	private Label roomNameLabel;
 	
 	public SuggestionDialog(ArrayList<Card> deck, ClueGame game, String room) {
@@ -25,7 +26,7 @@ public class SuggestionDialog extends JDialog {
 		setLayout(new GridLayout(4,2));
 		playerCombobox = new JComboBox<String>();
 		weaponCombobox = new JComboBox<String>();
-		roomCombobox = new JComboBox<String>();
+
 		//create comboboxes based on cards in deck
 		for (Card x : deck) { 
 			if (x.getCardType().equals(Card.CardType.PLAYER)) {
@@ -33,9 +34,6 @@ public class SuggestionDialog extends JDialog {
 			}
 			if (x.getCardType().equals(Card.CardType.WEAPON)) {
 				weaponCombobox.addItem(x.getName()); 
-			}
-			if (x.getCardType().equals(Card.CardType.ROOM)) {
-				roomCombobox.addItem(x.getName()); 
 			}
 		}
 		roomNameLabel = new Label();
@@ -46,7 +44,8 @@ public class SuggestionDialog extends JDialog {
 		add(playerCombobox);
 		add(new Label("Weapon"));
 		add(weaponCombobox);
-		add(new Button("Submit"));
+		JButton submit = new JButton("ok");
+		add(submit);
 		add(new Button("Cancel"));
 		
 	}

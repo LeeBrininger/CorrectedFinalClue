@@ -231,7 +231,7 @@ public class Board extends JPanel {
 
 		ArrayList <BoardCell> adjacentTargets = new ArrayList<BoardCell>();
 		for(Integer i : intsTargets){
-			if(!(visited.get(i))) //if the cell has not been visited
+			if(!(visited.get(i))) //if the cell has not been visited  NEED TO ADD THE OTHER PLAYER CHECK HERE
 				adjacentTargets.add(getCellAt(i));
 
 		}

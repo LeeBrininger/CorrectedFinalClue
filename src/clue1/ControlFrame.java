@@ -16,6 +16,7 @@ public class ControlFrame extends JFrame {
 	private TurnPanel turnPanel;
 	private FeedbackPanel rollPanel, guessPanel, resultPanel;
 	private ClueGame game;
+	private GuessDialog GuessDialog;
 	
 	public ControlFrame(ClueGame game) {
 		this.game = game;
@@ -50,26 +51,35 @@ public class ControlFrame extends JFrame {
 		Player currentPlayer = game.getPlayers().get(game.getCurrentPlayerIndex());
 		turnPanel.getCurrentPlayerText().setText(currentPlayer.toString());
 
-		
-
 		int roll = new Random().nextInt(6)+1;
 		rollPanel.getTextField().setText(Integer.toString(roll));
 		currentPlayer.handleTurn(game, roll);	
 	}
 	
-	public class ButtonListener implements ActionListener {
+	public void accusation(){
+		
+		if(game.isHumanTurn() && game.checkTurnComplete()){
+			JOptionPane.showMessageDialog(game, "You can only guess at the begining of your turn!",
+	       			"ERROR", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		game.humanaccusation();
+		
+	}
+	
+	class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (((JButton) e.getSource()) == turnPanel.getNextPlayerButton()) nextPlayer();
-			else ((HumanPlayer) game.getPlayers().get(game.getHumanPlayerIndex())).makeAccusation();
-			
+			else if (((JButton) e.getSource()) == turnPanel.getMakeAccusationButton()) accusation();
 		}
+		
 		
 	}
 	
 	public void displayGuess(String guess, String feedback){
-		guessPanel.getTextField().setText(guess);
+		//guessPanel.getTextField().setText(guess);
 		resultPanel.getTextField().setText(feedback);		
 	}
 	

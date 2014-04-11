@@ -42,7 +42,8 @@ public class ClueGame extends JFrame {
 	private static final String defaultLayoutFile = "ClueLayout";
 	private static final String defaultLegendFile = "ClueLegend";
 	private SuggestionDialog suggestionDialog;
-	//private String room;
+	private GuessDialog GuessDialog;
+	private String room;
 
 	public ClueGame(String componentFile) {
 		this(componentFile, defaultLayoutFile, defaultLegendFile);
@@ -263,6 +264,10 @@ public class ClueGame extends JFrame {
 		humanTurnFinished = true;
 	}
 
+	public void humanaccusation(){
+		GuessDialog = new GuessDialog(cards, this, room);
+		GuessDialog.setVisible(true);
+	}
 	public int getCurrentPlayerIndex() {
 		return currentPlayerIndex;
 	}
@@ -353,7 +358,7 @@ public class ClueGame extends JFrame {
 		return controls;
 	}
 
-	public SuggestionDialog getSuggestoinDialog() {
+	public SuggestionDialog getSuggestionDialog() {
 		return suggestionDialog;
 	}
 
