@@ -58,6 +58,11 @@ public class ControlFrame extends JFrame {
 	
 	public void accusation(){
 		
+		if(!game.isHumanTurn()) {
+			JOptionPane.showMessageDialog(game, "It is not your turn!",
+	       			"ERROR", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		if(game.isHumanTurn() && game.checkTurnComplete()){
 			JOptionPane.showMessageDialog(game, "You can only guess at the begining of your turn!",
 	       			"ERROR", JOptionPane.ERROR_MESSAGE);

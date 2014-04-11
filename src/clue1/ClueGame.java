@@ -202,8 +202,13 @@ public class ClueGame extends JFrame {
 	//display the accusation and end game if it is correct
 	public void handleAccusation(Solution guess, Player accusingPerson){
 		if (guess.equals(solution)) {
+			String title = "Correct Accusation";
+			if (accusingPerson == getHumanPlayer()) {
+				title = "You win!";
+			}
 			JOptionPane.showMessageDialog(this, accusingPerson.getName() + " correctly guessed "
-					+ solution.toOutputString(), "Correct Accusation", JOptionPane.INFORMATION_MESSAGE);
+					+ solution.toOutputString(), title, JOptionPane.INFORMATION_MESSAGE);
+			this.dispose();
 		} else {
 			JOptionPane.showMessageDialog(this, accusingPerson.getName() + " incorrectly guessed "
 					+ solution.toOutputString(), "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
