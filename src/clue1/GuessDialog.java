@@ -18,7 +18,7 @@ public class GuessDialog extends JDialog {
 	
 	private JComboBox<String> playerCombobox, weaponCombobox, roomCombobox;
 	
-	public GuessDialog(ArrayList<Card> deck, ClueGame game, String room) {
+	public GuessDialog(ArrayList<Card> deck, ClueGame game) {
 		setTitle("Make Suggestion");
 		setSize(500, 500);
 		
