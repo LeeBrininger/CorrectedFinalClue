@@ -204,6 +204,14 @@ public class ClueGame extends JFrame {
 	@SuppressWarnings("unused")
 	public Card handleSuggestion(String person, String weapon, String room, Player accusingPerson) {
 		Card response = null;
+		//move accused player to room
+		for (Player p: players) {
+			if (p.getName().equals(person)) {
+				p.setCurrentLocation(accusingPerson.getCurrentLocation());
+			}
+		}
+		board.repaint(); //show that player was moved
+		
 		for (Player p : players) {
 			if (!p.equals(accusingPerson)) { //the accusing person cannot disprove 
 				ArrayList<Card> sameCards = new ArrayList<Card>();
