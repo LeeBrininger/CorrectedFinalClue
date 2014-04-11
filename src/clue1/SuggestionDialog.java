@@ -80,9 +80,8 @@ public class SuggestionDialog extends JDialog {
 	public void makeSuggestion() {
 		Solution suggestion = new Solution((String) playerCombobox.getSelectedItem(), 
 				(String) weaponCombobox.getSelectedItem(), room);
-		System.out.println("tESTING" + suggestion + game.getHumanPlayer().getName());
 		Card feedback = game.handleSuggestion(suggestion, game.getHumanPlayer());
-		game.getControlPanel().displayGuess(suggestion.toOutputString(), feedback.getName());
+		game.getControlPanel().displayGuess(suggestion.toOutputString(), feedback);
 		this.dispose();
 	}
 	

@@ -98,7 +98,7 @@ public class ComputerPlayer extends Player {
 		if(currentLocation.checkRoom()){
 			Solution solution = createSuggestion();
 			Card feedback = game.handleSuggestion(solution, this);
-			game.getControlPanel().displayGuess(solution.toOutputString(), feedback.getName());
+			game.getControlPanel().displayGuess(solution.toOutputString(), feedback);
 			
 		}
 

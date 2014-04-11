@@ -70,7 +70,6 @@ public class ClueGame extends JFrame {
 
 		board.setPlayers(players);
 		board.setGame(this);
-		System.out.println("");
 		// JFrame setup
 		setTitle("Clue");
 
@@ -198,7 +197,6 @@ public class ClueGame extends JFrame {
 	}
 */
 	public Card handleSuggestion(Solution guesses, Player accusingPerson){
-		System.out.println(guesses);
 		return handleSuggestion(guesses.getPerson(), guesses.getWeapon() ,guesses.getRoom(), accusingPerson);
 		
 	}
@@ -348,9 +346,6 @@ public class ClueGame extends JFrame {
 
 	public static void main(String[] args) {
 		ClueGame game = new ClueGame("componentConfig2.csv");
-		System.out.println("Found a big error, players can occupy the same space");
-		System.out.println("(Interesting commucation syte here...)\n" + 
-		"we are allowed to have players occupy the same space in this version of the game.");
 		game.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		game.setVisible(true);
 

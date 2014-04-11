@@ -78,9 +78,13 @@ public class ControlFrame extends JFrame {
 		
 	}
 	
-	public void displayGuess(String guess, String feedback){
+	public void displayGuess(String guess, Card feedback){
 		guessPanel.getTextField().setText(guess);
-		resultPanel.getTextField().setText(feedback);		
+		if (!(feedback == null)) {
+			resultPanel.getTextField().setText(feedback.getName());
+		} else {
+			resultPanel.getTextField().setText("no new clue");
+		}
 	}
 	
 
