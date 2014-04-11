@@ -20,8 +20,10 @@ public class GuessDialog extends JDialog {
 	
 	private JComboBox<String> playerCombobox, weaponCombobox, roomCombobox;
 	private JButton submit, cancel;
+	private ClueGame game;
 	
 	public GuessDialog(ArrayList<Card> deck, ClueGame game) {
+		this.game = game;
 		setTitle("Make Suggestion");
 		setSize(500, 500);
 		
@@ -45,7 +47,7 @@ public class GuessDialog extends JDialog {
 		cancel = new JButton("Cancel");
 		cancel.addActionListener(new GuessDialogButtonListener());
 		submit.addActionListener(new GuessDialogButtonListener());
-		add(new Label("Your Room"));
+		add(new Label("Room"));
 		add((roomCombobox));
 		add(new Label("Person"));
 		add(playerCombobox);
@@ -69,6 +71,9 @@ public class GuessDialog extends JDialog {
 	}
 	
 	public void makeAccusation() {
+		Solution accusation = new Solution((String) playerCombobox.getSelectedItem(), 
+				(String) weaponCombobox.getSelectedItem(), (String) roomCombobox.getSelectedItem());
+		game.handleAccusation(accusation, game.getHumanPlayer());
 		this.dispose();
 	}
 	private class GuessDialogButtonListener implements ActionListener {

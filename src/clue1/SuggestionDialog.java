@@ -74,7 +74,7 @@ public class SuggestionDialog extends JDialog {
 	}
 	
 	public void closeWindow() {
-		this.dispose();
+		this.setVisible(false);
 	}
 	
 	public void makeSuggestion() {

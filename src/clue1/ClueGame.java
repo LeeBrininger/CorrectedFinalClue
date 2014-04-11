@@ -176,6 +176,7 @@ public class ClueGame extends JFrame {
 
 	public void setSolution(String person, String weapon, String room) {
 		solution = new Solution(person, weapon, room);
+		System.out.println(solution);
 	}
 	
 	//used to help set up tests
@@ -195,7 +196,20 @@ public class ClueGame extends JFrame {
 	public void selectAnswer() {
 
 	}
+	
+	
 */
+	//display the accusation and end game if it is correct
+	public void handleAccusation(Solution guess, Player accusingPerson){
+		if (guess.equals(solution)) {
+			JOptionPane.showMessageDialog(this, accusingPerson.getName() + " correctly guessed "
+					+ solution.toOutputString(), "Correct Accusation", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(this, accusingPerson.getName() + " incorrectly guessed "
+					+ solution.toOutputString(), "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
 	public Card handleSuggestion(Solution guesses, Player accusingPerson){
 		return handleSuggestion(guesses.getPerson(), guesses.getWeapon() ,guesses.getRoom(), accusingPerson);
 		

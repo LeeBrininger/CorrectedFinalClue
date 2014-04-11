@@ -11,6 +11,8 @@ public class ComputerPlayer extends Player {
 	private ArrayList<Card> unseenCards;
 	private char lastRoomVisited;
 	private BoardCell target;
+	private Solution accusation;
+	private boolean makeAccusation;
 	
 	public ComputerPlayer(String name, String color, int startLocation) {
 		super(name, color, startLocation);
@@ -87,10 +89,18 @@ public class ComputerPlayer extends Player {
 		super.clearCards();
 		unseenCards.clear();
 	}
-
+	
+	private void makeAccusation(ClueGame game) {
+		makeAccusation = false;
+		game.handleAccusation(accusation, this);
+	}
 
 	@Override
 	public void handleTurn(ClueGame game, int roll) {
+		if (makeAccusation) {
+			makeAccusation(game);
+			return;
+		}
 		game.getBoard().setHighlightTargets(false);
 		game.getBoard().calcTargets(getCurrentLocation().getRow(), getCurrentLocation().getColumn(), roll);
 		setCurrentLocation(pickLocation(game.getBoard().getTargets()));
@@ -99,6 +109,11 @@ public class ComputerPlayer extends Player {
 			Solution solution = createSuggestion();
 			Card feedback = game.handleSuggestion(solution, this);
 			game.getControlPanel().displayGuess(solution.toOutputString(), feedback);
+			
+			if (feedback == null) { //suggestion not disprove, so used as accusation next time
+				accusation = solution;
+				makeAccusation = true;
+			}
 			
 		}
 
