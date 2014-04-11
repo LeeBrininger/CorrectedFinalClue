@@ -3,6 +3,8 @@ package clue1;
 import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -17,6 +19,7 @@ import clue1.DetectiveNotesDialog.CheckboxPanel;
 public class GuessDialog extends JDialog {
 	
 	private JComboBox<String> playerCombobox, weaponCombobox, roomCombobox;
+	private JButton submit, cancel;
 	
 	public GuessDialog(ArrayList<Card> deck, ClueGame game) {
 		setTitle("Make Suggestion");
@@ -38,16 +41,41 @@ public class GuessDialog extends JDialog {
 				roomCombobox.addItem(x.getName()); 
 			}
 		}
-		
+		submit = new JButton("ok");
+		cancel = new JButton("Cancel");
+		cancel.addActionListener(new GuessDialogButtonListener());
+		submit.addActionListener(new GuessDialogButtonListener());
 		add(new Label("Your Room"));
 		add((roomCombobox));
 		add(new Label("Person"));
 		add(playerCombobox);
 		add(new Label("Weapon"));
 		add(weaponCombobox);
-		JButton submit = new JButton("ok");
 		add(submit);
-		add(new Button("Cancel"));
+		add(cancel);
+		
+	}
+	
+	public JButton getSubmitButton() {
+		return submit;
+	}
+
+	public JButton getCancelButton() {
+		return cancel;
+	}
+	
+	public void closeWindow() {
+		this.dispose();
+	}
+
+	private class GuessDialogButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (((JButton) e.getSource()) == cancel) closeWindow();
+			//else if (((JButton) e.getSource()) == turnPanel.getMakeAccusationButton()) accusation();
+		}
+		
 		
 	}
 }

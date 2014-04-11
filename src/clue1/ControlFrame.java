@@ -67,7 +67,7 @@ public class ControlFrame extends JFrame {
 		
 	}
 	
-	class ButtonListener implements ActionListener {
+	private class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {

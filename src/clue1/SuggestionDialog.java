@@ -3,6 +3,8 @@ package clue1;
 import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -18,6 +20,7 @@ public class SuggestionDialog extends JDialog {
 	
 	private JComboBox<String> playerCombobox, weaponCombobox;
 	private Label roomNameLabel;
+	private JButton submit, cancel;
 	
 	public SuggestionDialog(ArrayList<Card> deck, ClueGame game, String room) {
 		setTitle("Make Suggestion");
@@ -26,6 +29,10 @@ public class SuggestionDialog extends JDialog {
 		setLayout(new GridLayout(4,2));
 		playerCombobox = new JComboBox<String>();
 		weaponCombobox = new JComboBox<String>();
+		submit = new JButton("ok");
+		cancel = new JButton("Cancel");
+		cancel.addActionListener(new SuggestionDialogButtonListener());
+		submit.addActionListener(new SuggestionDialogButtonListener());
 
 		//create comboboxes based on cards in deck
 		for (Card x : deck) { 
@@ -46,11 +53,34 @@ public class SuggestionDialog extends JDialog {
 		add(weaponCombobox);
 		JButton submit = new JButton("ok");
 		add(submit);
-		add(new Button("Cancel"));
+		add(cancel);
 		
 	}
 	
 	public void setRoomName(String roomName) {
 		roomNameLabel.setText(roomName);
+	}
+	
+	public JButton getSubmitButton() {
+		return submit;
+	}
+
+	public JButton getCancelButton() {
+		return cancel;
+	}
+	
+	public void closeWindow() {
+		this.dispose();
+	}
+	
+	private class SuggestionDialogButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (((JButton) e.getSource()) == cancel) closeWindow();
+			//else if (((JButton) e.getSource()) == turnPanel.getMakeAccusationButton()) accusation();
+		}
+		
+		
 	}
 }
