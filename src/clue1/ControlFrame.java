@@ -57,7 +57,7 @@ public class ControlFrame extends JFrame {
 		currentPlayer.handleTurn(game, roll);	
 	}
 	
-	class ButtonListener implements ActionListener {
+	public class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {

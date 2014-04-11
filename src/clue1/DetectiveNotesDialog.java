@@ -62,7 +62,7 @@ public class DetectiveNotesDialog extends JDialog {
 		
 	}
 	
-	class CheckboxPanel extends JPanel {
+	public class CheckboxPanel extends JPanel {
 		
 		private ArrayList<JCheckBox> checkboxes;
 		
@@ -86,7 +86,7 @@ public class DetectiveNotesDialog extends JDialog {
 		
 	}
 	
-	class CheckboxListener implements ActionListener {
+	public class CheckboxListener implements ActionListener {
 		String type;
 		public CheckboxListener(String type) {
 			this.type = type;

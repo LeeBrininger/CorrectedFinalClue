@@ -16,6 +16,7 @@ import clue1.DetectiveNotesDialog.CheckboxPanel;
 public class SuggestionDialog extends JDialog {
 	
 	private JComboBox<String> playerCombobox, weaponCombobox, roomCombobox;
+	private Label roomNameLabel;
 	
 	public SuggestionDialog(ArrayList<Card> deck, ClueGame game, String room) {
 		setTitle("Make Suggestion");
@@ -37,9 +38,10 @@ public class SuggestionDialog extends JDialog {
 				roomCombobox.addItem(x.getName()); 
 			}
 		}
+		roomNameLabel = new Label();
 		
 		add(new Label("Your Room"));
-		add(new Label(room));
+		add(roomNameLabel);
 		add(new Label("Person"));
 		add(playerCombobox);
 		add(new Label("Weapon"));
@@ -47,5 +49,9 @@ public class SuggestionDialog extends JDialog {
 		add(new Button("Submit"));
 		add(new Button("Cancel"));
 		
+	}
+	
+	public void setRoomName(String roomName) {
+		roomNameLabel.setText(roomName);
 	}
 }
