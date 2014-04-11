@@ -207,6 +207,7 @@ public class ClueGame extends JFrame {
 			}
 			JOptionPane.showMessageDialog(this, accusingPerson.getName() + " correctly guessed "
 					+ solution.toOutputString(), title, JOptionPane.INFORMATION_MESSAGE);
+			detectiveNotes.dispose();
 			this.dispose();
 		} else {
 			JOptionPane.showMessageDialog(this, accusingPerson.getName() + " incorrectly guessed "
